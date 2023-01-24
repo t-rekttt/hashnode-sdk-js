@@ -20,3 +20,9 @@ export type Article = {
   canonicalURL?: string;
   contentMarkdown: string;
 };
+
+export type ImageUploadURL = {
+  url: string;
+  fields: any;
+  __typename: string;
+};

@@ -1,6 +1,8 @@
 import { query } from "./base";
 import { User } from "./types";
 
+const apiKey = "";
+
 /**
  * Find a user by username.
  *
@@ -8,6 +10,7 @@ import { User } from "./types";
  */
 const findUser = async (username: string): Promise<User> =>
   query(
+    apiKey,
     `query User($username: String!) {
        user(username: $username) {
          _id,

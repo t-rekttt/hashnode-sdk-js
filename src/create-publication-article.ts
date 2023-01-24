@@ -10,25 +10,27 @@ type InputArticle = Omit<Article, "id" | "url">;
  * @param article The article to be created.
  */
 const createPublicationArticle = (
+  apiKey: string,
   publicationId: string,
   article: InputArticle
 ): Promise<Article> =>
   query(
+    apiKey,
     `mutation createPublicationStory($input: CreateStoryInput!, $publicationId: String!) {
-       createPublicationStory(input: $input, publicationId: $publicationId) {
-         success,
-         message,
-         post {
-           _id,
-           title,
-           slug,
-           isRepublished,
-           publication {
-             domain
-           }
-         },
-       }
-     }`,
+      createPublicationStory(input: $input, publicationId: $publicationId) {
+        success,
+        message,
+        post {
+          _id,
+          title,
+          slug,
+          isRepublished,
+          publication {
+            domain
+          }
+        },
+      }
+    }`,
     {
       input: {
         title: article.title,

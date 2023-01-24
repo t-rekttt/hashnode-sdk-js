@@ -30,13 +30,16 @@
     "style:check": "prettier --check .",
     "style:format": "prettier --write ."
   },
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
-    "@types/node-fetch": "^2.5.7",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@types/request": "^2.48.8",
+    "@types/request-promise": "^4.1.48",
+    "https-proxy-agent": "^5.0.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }

@@ -1,6 +1,8 @@
 import { APIError, query } from "./base";
 import { Article } from "./types";
 
+const apiKey = "";
+
 type InputArticle = Omit<Article, "url">;
 
 /**
@@ -14,6 +16,7 @@ const updatePublicationArticle = async (
   article: InputArticle
 ): Promise<Article> =>
   query(
+    apiKey,
     `mutation updateStory($postId: String!, $input: UpdateStoryInput!) {
         updateStory(postId: $postId, input: $input) {
          success,
