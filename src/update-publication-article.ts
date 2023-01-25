@@ -1,8 +1,6 @@
 import { APIError, query } from "./base";
 import { Article } from "./types";
 
-const apiKey = "";
-
 type InputArticle = Omit<Article, "url">;
 
 /**
@@ -12,6 +10,7 @@ type InputArticle = Omit<Article, "url">;
  * @param article The article with updated content.
  */
 const updatePublicationArticle = async (
+  apiKey : string,
   publicationId: string,
   article: InputArticle
 ): Promise<Article> =>

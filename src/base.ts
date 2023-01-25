@@ -1,7 +1,9 @@
 const apiURL = "https://api.hashnode.com";
 const unofficalApiUrl = "https://gql.hashnode.com";
 const imageUploadApiUrl = "https://s3.amazonaws.com/cloudmate-test";
-import request from "request-promise";
+const ajaxApiUnofficial = "https://hashnode.com/ajax";
+import request, { RequestPromise } from "request-promise";
+import { PostUpdate } from "./types";
 
 /**
  * Hashnode API's returned errors.
@@ -80,3 +82,13 @@ export const uploadImageToAmazon = async (fields: object, imageStream: any) => {
 
   return res;
 };
+
+export const sendAjaxUpdatePost = (data : PostUpdate, cookie: string) => {
+  return request.post(`${ajaxApiUnofficial}/post/update`, {
+    body: data,
+    json: true,
+    headers: {
+      Cookie: cookie,
+    },
+  });
+}
