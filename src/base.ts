@@ -3,7 +3,7 @@ const unofficalApiUrl = "https://gql.hashnode.com";
 const imageUploadApiUrl = "https://s3.amazonaws.com/cloudmate-test";
 const ajaxApiUnofficial = "https://hashnode.com/ajax";
 import request, { RequestPromise } from "request-promise";
-import { PostUpdate } from "./types";
+import { DraftUpdate, PostUpdate, Publication } from "./types";
 
 /**
  * Hashnode API's returned errors.
@@ -91,4 +91,40 @@ export const sendAjaxUpdatePost = (data : PostUpdate, cookie: string) => {
       Cookie: cookie,
     },
   });
+}
+
+export const updateDraftUnofficial = (data : DraftUpdate, cookie : string) => {
+  return request.post("https://hashnode.com/api/draft/save-data", {
+    body: data,
+    json: true,
+    headers: {
+      Cookie: cookie
+    }
+  });
+}
+
+export const getBuildId = async() => {
+  let res = await request.get("https://hashnode.com");
+  return /buildId":".+?"/.exec(res)?.[1];
+}
+
+export const createDraftUnofficial = async(publicationId : Publication["id"], cookie : string) => {
+  let res = await request.get("https://hashnode.com/draft", {
+    qs: {
+      new: true,
+      publicationId,
+    },
+    headers: {
+      Cookie: cookie,
+    },
+    json: true,
+    resolveWithFullResponse: true,
+    simple: false,
+    followRedirect: false
+  });
+
+  if (res.statusCode !== 307)
+    throw new APIError(res.body);
+
+  return res.headers['location'];
 }

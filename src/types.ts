@@ -68,3 +68,46 @@ export type PostUpdate = {
   };
   draftId: boolean;
 };
+
+export type DraftUpdate = {
+  updateData: {
+    _id: string;
+    type: string;
+    contentMarkdown: string;
+    title: string;
+    subtitle: string;
+    slug: string;
+    slugOverridden: boolean;
+    tags: never[];
+    coverImage: string;
+    coverImageAttribution: string;
+    coverImagePhotographer: string;
+    isCoverAttributionHidden: boolean;
+    ogImage: string;
+    metaTitle: string;
+    metaDescription: string;
+    originalArticleURL: string;
+    isRepublished: boolean;
+    partOfPublication: boolean;
+    publication: string;
+    isDelisted: boolean;
+    dateAdded: string;
+    importedFromMedium: boolean;
+    dateUpdated: number;
+    hasCustomDate: boolean;
+    hasScheduledDate: boolean;
+    isActive: boolean;
+    series: any;
+    pendingPublicationApproval: boolean;
+    disableComments: boolean;
+    stickCoverToBottom: boolean;
+    enableToc: boolean;
+    publishAs: any;
+    isNewsletterActivated: boolean;
+  };
+  draftAuthor: User["id"];
+  draftId: string;
+  options: {
+    merge: boolean;
+  };
+};
